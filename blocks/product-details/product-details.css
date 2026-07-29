@@ -123,21 +123,26 @@
     font-weight: 600;
     margin-top: 0.25rem;
   }
+
   .product-details__stock {
     font-size: 1.5rem;
     font-weight: 600;
     margin-top: 0.25rem;
   }
+
   .stock-badge--in-stock {
     color: #2d7d2d;
   }
+
   .stock-badge--out-of-stock {
-    color: #cc0000;
+    color: #c00;
   }
+
   .custom-attribute dt {
     font-weight: 600;
     margin-top: 0.5rem;
   }
+
   .custom-attribute dd {
     margin-left: 0;
     color: #444;

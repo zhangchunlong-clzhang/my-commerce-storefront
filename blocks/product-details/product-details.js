@@ -143,7 +143,7 @@ export default async function decorate(block) {
   const $wishlistToggleBtn = fragment.querySelector('.product-details__buttons__add-to-wishlist');
   const $description = fragment.querySelector('.product-details__description');
   const $attributes = fragment.querySelector('.product-details__attributes');
-  
+
   const $tagline = fragment.querySelector('.product-details__tagline');
   const $stock = fragment.querySelector('.product-details__stock');
   const $customAttribute = fragment.querySelector('.product-details__custom-attribute');
@@ -153,16 +153,16 @@ export default async function decorate(block) {
     $tagline.textContent = 'Free shipping on orders over $50';
   }
 
-  events.on('pdp/data', (product) => {
-    if (!product) return;
-    if (product.inStock) {
+  events.on('pdp/data', (varproduct) => {
+    if (!varproduct) return;
+    if (varproduct.inStock) {
       $stock.textContent = '● In Stock';
       $stock.className = 'product-details__stock stock-badge stock-badge--in-stock';
     } else {
       $stock.textContent = '● Out of Stock';
       $stock.className = 'product-details__stock stock-badge stock-badge--out-of-stock';
     }
-    const value = product.metaTitle;
+    const value = varproduct.metaTitle;
     if (value) {
       $customAttribute.innerHTML = `
       <div class="custom-attribute">

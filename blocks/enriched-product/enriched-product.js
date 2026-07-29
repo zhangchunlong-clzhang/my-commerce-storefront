@@ -1,25 +1,23 @@
 import { readBlockConfig } from '../../scripts/aem.js';
 
-const MESH_ENDPOINT =
-  'https://edge-sandbox-graph.adobe.io/api/36311dea-5d23-46fa-9b90-8739fe0eb962/graphql';
+const MESH_ENDPOINT = 'https://edge-sandbox-graph.adobe.io/api/36311dea-5d23-46fa-9b90-8739fe0eb962/graphql';
 
-function formatMoneyAmount (amount) {
+function formatMoneyAmount(amount) {
   if (!amount || typeof amount.value !== 'number') return '';
   const c = amount.currency;
-  const code =
-    typeof c === 'string'
-      ? c
-      : c?.code ?? c?.label ?? '';
+  const code = typeof c === 'string'
+    ? c
+    : c?.code ?? c?.label ?? '';
   return `${code ? `${code} ` : ''}${amount.value.toFixed(2)}`.trim();
 }
 
-function priceAmountFromCatalogProduct (product) {
+function priceAmountFromCatalogProduct(product) {
   const simple = product?.price?.final?.amount;
   if (simple) return simple;
   return product?.priceRange?.minimum?.final?.amount ?? null;
 }
 
-async function fetchEnrichedProduct (sku) {
+async function fetchEnrichedProduct(sku) {
   const query = `
     query GetEnrichedProduct($sku: String!) {
       products(skus: [$sku]) {
@@ -82,7 +80,7 @@ async function fetchEnrichedProduct (sku) {
   return payload;
 }
 
-function renderSustainabilityBadge (score) {
+function renderSustainabilityBadge(score) {
   let label;
   let cssClass;
   if (score >= 80) {
@@ -98,7 +96,7 @@ function renderSustainabilityBadge (score) {
   return `<span class="sustainability-badge ${cssClass}">${label} (${score}/100)</span>`;
 }
 
-export default async function decorate (block) {
+export default async function decorate(block) {
   const { sku } = readBlockConfig(block);
 
   if (!sku) {
