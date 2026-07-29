@@ -19,6 +19,22 @@ async function fetchCategoryProducts (categoryId, maxProducts) {
               url
               label
             }
+            ... on SimpleProductView {
+              price {
+                final {
+                  amount {
+                    value
+                    currency
+                  }
+                }
+                regular {
+                  amount {
+                    value
+                    currency
+                  }
+                }
+              }
+            }
           }
         }
       }
